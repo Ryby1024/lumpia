@@ -9,6 +9,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import API from "./utils/API";
+import Products from "./pages/Products";
+import Navbar from "../src/components/Navbar/index";
 
 class App extends Component {
   state = {
@@ -48,7 +50,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
+        <Navbar logout={this.logout} />
           <Switch>
             <Route exact path="/">
               {this.state.authorized ? (
@@ -71,11 +73,18 @@ class App extends Component {
                 <Register isAuthorized={this.isAuthorized} />
               )}
             </Route>
+            <Route exact path="/products">
+              {this.state.authorized ? (
+                <Products />
+              ) : (
+                <Redirect to="/login" />
+              )}
+            </Route>
             <Route>
               <Redirect to="/" />
             </Route>
           </Switch>
-        </div>
+        
       </Router>
     );
   }

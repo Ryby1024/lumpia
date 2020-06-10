@@ -15,5 +15,9 @@ export default {
   },
   availableUN: function (username) {
     return axios.get("/api/user/?username=" + username);
+  },
+
+  getProducts: function () {
+    return axios.get("/api/products");
   }
 };
