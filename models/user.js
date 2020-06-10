@@ -9,7 +9,16 @@ const User = new Schema({
         unique: true,
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please enter a valid email address']
     },
+    admin: {
+        type: Boolean,
+        default: false
+    },
     created: { type: Date, required: true, default: Date.now() },
+
+    order: {
+        type: Schema.Types.ObjectId,
+        ref: "Order"
+    }
 });
 
 User.plugin(passportLocalMongoose);
