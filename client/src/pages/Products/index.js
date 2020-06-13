@@ -61,7 +61,7 @@ class Products extends Component {
 
                 <Row>
                     <Col size="sm-4" id="product-column">
-                        {this.getProducts}
+                        {this.allProducts}
                     </Col>
                 </Row>
             </Container>

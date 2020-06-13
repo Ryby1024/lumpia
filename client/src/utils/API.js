@@ -19,5 +19,15 @@ export default {
 
   getProducts: function () {
     return axios.get("/api/products");
+  },
+  getUsers: function () {
+    return axios.get("/api/admin");
+  },
+  deleteUser: function (id) {
+    return axios.delete("/api/admin" + id)
+  },
+
+  editUser: function (id) {
+    return axios.put("/api/admin" + id);
   }
 };

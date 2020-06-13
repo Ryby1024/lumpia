@@ -11,6 +11,9 @@ import Home from "./pages/Home";
 import API from "./utils/API";
 import Products from "./pages/Products";
 import Navbar from "../src/components/Navbar/index";
+import Admin from "./pages/Admin";
+
+
 
 class App extends Component {
   state = {
@@ -76,6 +79,13 @@ class App extends Component {
             <Route exact path="/products">
               {this.state.authorized ? (
                 <Products />
+              ) : (
+                <Redirect to="/login" />
+              )}
+            </Route>
+            <Route exact path="/admin">
+              {this.state.authorized ? (
+                <Admin />
               ) : (
                 <Redirect to="/login" />
               )}

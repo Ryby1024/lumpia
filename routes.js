@@ -63,4 +63,15 @@ router.get("/api/authorized", isAuthenticated, function(req, res) {
   res.json(req.user);
 });
 
+router.get("/api/admin", isAuthenticated, function(req, res) {
+ db.User.find({})
+ .then(function(allUsers){
+   res.json(allUsers);
+   console.log(allUsers)
+ })
+ .catch(function(err) {
+   res.json(err)
+ });
+});
+
 module.exports = router;
