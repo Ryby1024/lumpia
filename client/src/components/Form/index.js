@@ -8,6 +8,15 @@ export function Input({ type, classes, placeholder, ...other }) {
   {...other} />;
 }
 
+export function Dropdown({ type, classes, placeholder, rows, children, value, ...other }) {
+  return <select className={"form-control " + (classes ? classes : "")}
+  {...other} > {children} </select>
+}
+
+export function Option({ text, value }) {
+  return <option  value={value}> {text} </option>;
+}
+
 export function Label({ text }) {
   return <label> {text} </label>;
 }

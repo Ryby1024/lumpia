@@ -74,4 +74,27 @@ router.get("/api/admin", isAuthenticated, function(req, res) {
  });
 });
 
+router.get("/api/admin/users/:id", isAuthenticated, function(req, res) {
+  db.User.findOne({_id: req.params.id})
+  .then(currentUser => {
+    res.json(currentUser)
+    console.log("got the user")
+    console.log(currentUser);
+  })
+  .catch(function(err) {
+    res.json(err);
+  })
+})
+
+router.put("/api/admin/edit", isAuthenticated, function (req, res) {
+  db.User.findByIdAndUpdate({_id: req.body._id}, req.body, {new: true})
+  .then(function(data) {
+    console.log(data);
+    res.json(data);
+  })
+  .catch(function(err){
+    res.json(err)
+  })
+})
+
 module.exports = router;
