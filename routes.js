@@ -87,7 +87,8 @@ router.get("/api/admin/users/:id", isAuthenticated, function(req, res) {
 })
 
 router.put("/api/admin/edit", isAuthenticated, function (req, res) {
-  db.User.findByIdAndUpdate({_id: req.body._id}, req.body, {new: true})
+  console.log(req.body._id)
+  db.User.findByIdAndUpdate({ _id: req.body._id }, req.body, { new: true })
   .then(function(data) {
     console.log(data);
     res.json(data);

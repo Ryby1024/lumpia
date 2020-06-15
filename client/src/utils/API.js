@@ -28,7 +28,7 @@ export default {
   },
 
   editUser: function (data) {
-    return axios.put("/api/admin/edit" + data);
+    return axios.put("/api/admin/edit", data);
   },
   selectUser: function (id) {
     return axios.get("/api/admin/users/" + id);

@@ -85,6 +85,7 @@ class Admin extends Component {
     updateUser = (event) => {
         event.preventDefault();
         API.editUser({
+            _id: this.state.user_id,
             username: this.state.username,
             email: this.state.email,
             admin: this.state.admin
@@ -165,7 +166,7 @@ class Admin extends Component {
                             onChange={this.handleInputChange}
                             key={this.state.user_id}
                             >
-                            <Option text="Should they be an Admin?"/>
+                            <Option text="Should they be an Admin" />
                             <Option text="Yes" value="true"/>
                             <Option text="No"  value="false"/>
                             </Dropdown>
