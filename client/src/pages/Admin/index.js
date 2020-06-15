@@ -132,11 +132,13 @@ class Admin extends Component {
                             <Row>
                                 <Col size="sm-6" className="align-self-center">
                             <Label text="User Name"/>
-                            <Input 
-                                name="Username"
-                                value={this.state.username}
+                            <Input
+                                type="text" 
+                                name="username"
+                                defaultValue={this.state.username}
                                 onChange={this.handleInputChange}
-                                type="text"
+                                className="form-control" id="username"
+                                placeholder={this.state.username}
                             />
                             </Col>
                         </Row>
@@ -146,11 +148,13 @@ class Admin extends Component {
                         <Row>
                                 <Col size="sm-6" className="align-self-center">
                             <Label text="Email"/>
-                            <Input 
-                                name="Email"
-                                value={this.state.email}
-                                onChange={this.handleInputChange}
+                            <Input
                                 type="text"
+                                name="email"
+                                defaultValue={this.state.email}
+                                onChange={this.handleInputChange}
+                                className="form-control" id="email"
+                                placeholder={this.state.email}
                             />
                             </Col>
                         </Row>
@@ -160,16 +164,10 @@ class Admin extends Component {
                         <Row>
                                 <Col size="sm-6" className="align-self-center">
                             <Label text="Admin"/>
-                            <Dropdown
-                            name="admin"
-                            value={this.state.admin}
-                            onChange={this.handleInputChange}
-                            key={this.state.user_id}
-                            >
-                            <Option text="Should they be an Admin" />
-                            <Option text="Yes" value="true"/>
-                            <Option text="No"  value="false"/>
-                            </Dropdown>
+                            <select className="form-control" name="admin" defaultValue={this.state.admin} onChange={this.handleInputChange}>
+                                <option value="true">Admin</option>
+                                <option value="false">Not Admin</option>
+                            </select>
                             </Col>
                         </Row>
                         </FormGroup>
