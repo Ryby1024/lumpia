@@ -181,9 +181,70 @@ class Admin extends Component {
                     </Tab>
                 
                 <Tab eventKey="products" title="Add Products" >
+                <h3 id="new-product">Add New Products</h3>
                 <Row className="add-product">
                     <Col size="sm-6" className="align-self-center">
-                        <h3 id="new-product">Add New Products</h3>
+                        <FormGroup>
+                                <Row>
+                                    <Col size="md-6">
+                                        <Label text="Name" />
+                                        <Input 
+                                        type="text"
+                                        name="name"
+                                        onChange={this.handleInputChange}
+                                        className="form-control" id="productName"
+                                        placeholder="Type of Lumpia"
+                                        />
+                                    </Col>
+                                </Row>
+                        </FormGroup>
+                        <FormGroup>
+                                <Row>
+                                    <Col size="md-6">
+                                        <Label text="Image" />
+                                        <Input 
+                                        type="text"
+                                        name="image"
+                                        onChange={this.handleInputChange}
+                                        className="form-control" id="imageLink"
+                                        placeholder="Link for Image"
+                                        />
+                                    </Col>
+                                </Row>
+                        </FormGroup>
+
+                        <FormGroup>
+                                <Row>
+                                    <Col size="md-6">
+                                        <Label text="Price" />
+                                        <Input 
+                                        type="text"
+                                        name="price"
+                                        onChange={this.handleInputChange}
+                                        className="form-control" id="price"
+                                        placeholder="Price"
+                                        />
+                                    </Col>
+                                </Row>
+                        </FormGroup>
+
+
+                        <FormGroup>
+                                <Row>
+                                    <Col size="md-6">
+                                        <Label text="Quantity" />
+                                        <Input 
+                                        type="text"
+                                        name="quantity"
+                                        onChange={this.handleInputChange}
+                                        className="form-control" id="quantity"
+                                        placeholder="Quantity"
+                                        />
+                                    </Col>
+                                </Row>
+                        </FormGroup>
+
+                        
                         <button type="button" onClick={() => this.addProduct()}>Add Product</button>
                     </Col>
                 </Row>
