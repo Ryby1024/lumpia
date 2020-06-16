@@ -9,6 +9,7 @@ class Products extends Component {
     state = {
         products: [],
         name: "",
+        image: "",
         price: "",
         quantity: ""
     }
@@ -47,6 +48,7 @@ class Products extends Component {
                 key={product._id}
                 _id={product._id}
                 name={product.name}
+                image={product.image}
                 price={product.price}
                 quantity={product.quantity}
                 />
@@ -60,7 +62,7 @@ class Products extends Component {
                 <h1 id="allProducts">All Products</h1>
 
                 <Row>
-                    <Col size="sm-4" id="product-column">
+                    <Col size="sm-3" id="product-column">
                         {this.allProducts}
                     </Col>
                 </Row>
