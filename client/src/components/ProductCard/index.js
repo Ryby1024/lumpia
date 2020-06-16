@@ -5,7 +5,7 @@ let moment = require("moment");
 const ProductCard = (props) => {
     return (
         <div className="card productCard">
-            <img class="card-img-top" src={props.image} alt="Card image cap"></img>
+            <img className="card-img-top" src={props.image} alt="Card image cap"></img>
             <div className="card-body text-center">
                 <h5 className="card-title card-text">Name: {props.name}</h5>
                 <span className="productCardBody">

@@ -41,10 +41,29 @@ router.post("/api/login", function(req, res, next) {
   })(req, res, next);
 });
 
+
+// Adding Products to the database
+router.post("/api/admin/products", function(req, res) {
+ db.Product.create({name: req.body.name, image: req.body.image, price: req.body.price, quantity: req.body.quantity})
+ .then(function(dbProduct){
+   return db.User.findOneAndUpdate({_id: req.user._id}, {$set: {product: dbProduct._id}})
+ })
+ .then(function(dbUser){
+   res.json(dbUser)
+ })
+ .catch(function(err){
+   console.log(err);
+   res.json(err)
+ });
+});
+ 
+
+
 router.get("/api/logout", function(req, res) {
   req.logout();
   res.json({ message: "logged out" });
 });
+
 
 router.get("/api/user", function(req, res) {
   console.log("available username");
@@ -63,6 +82,7 @@ router.get("/api/authorized", isAuthenticated, function(req, res) {
   res.json(req.user);
 });
 
+// Getting all the users from the database
 router.get("/api/admin", isAuthenticated, function(req, res) {
  db.User.find({})
  .then(function(allUsers){
@@ -74,6 +94,7 @@ router.get("/api/admin", isAuthenticated, function(req, res) {
  });
 });
 
+// Getting a single users info from the database
 router.get("/api/admin/users/:id", isAuthenticated, function(req, res) {
   db.User.findOne({_id: req.params.id})
   .then(currentUser => {
@@ -86,6 +107,19 @@ router.get("/api/admin/users/:id", isAuthenticated, function(req, res) {
   })
 })
 
+router.get("/api/products", isAuthenticated, function(req, res) {
+  db.Product.find({})
+  .then(function(allProducts){
+    res.json(allProducts)
+    console.log(allProducts);
+  })
+  .catch(function(err){
+    res.json(err)
+  });
+});
+
+
+// Editing a users info
 router.put("/api/admin/edit", isAuthenticated, function (req, res) {
   console.log(req.body._id)
   db.User.findByIdAndUpdate({ _id: req.body._id }, req.body, { new: true })

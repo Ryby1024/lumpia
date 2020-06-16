@@ -18,6 +18,10 @@ const User = new Schema({
     order: {
         type: Schema.Types.ObjectId,
         ref: "Order"
+    },
+    product: {
+        type: Schema.Types.ObjectId,
+        ref: "Product"
     }
 });
 

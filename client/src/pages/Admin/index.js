@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import API from "../../utils/API";
 import AdminProductCard from "../../components/AdminProductCard";
 import { Col, Row, Container } from "../../components/Grid";
-import UserCard from "../../components/UserCard";
 import {withRouter} from "react-router-dom";
 import { Tabs, Tab } from "react-bootstrap";
 import { FormGroup, Label, Input, Dropdown, Option, FormBtn } from "../../components/Form";
@@ -20,6 +19,7 @@ class Admin extends Component {
         email: "",
         admin: "",
         name: "",
+        image: "",
         price: "",
         quantity: ""
 
@@ -97,6 +97,22 @@ class Admin extends Component {
         })
     }
 
+    addProduct = (event) => {
+        event.preventDefault();
+        API.addProduct({
+            name: this.state.name,
+            image: this.state.image,
+            price: this.state.price,
+            quantity: this.state.quantity
+        })
+        .then(res => {
+            console.log(res);
+            // this.props.history.push("/products")
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    };
 
 
     render() {
@@ -190,6 +206,7 @@ class Admin extends Component {
                                         <Label text="Name" />
                                         <Input 
                                         type="text"
+                                        value={this.state.name}
                                         name="name"
                                         onChange={this.handleInputChange}
                                         className="form-control" id="productName"
@@ -204,6 +221,7 @@ class Admin extends Component {
                                         <Label text="Image" />
                                         <Input 
                                         type="text"
+                                        value={this.state.image}
                                         name="image"
                                         onChange={this.handleInputChange}
                                         className="form-control" id="imageLink"
@@ -219,6 +237,7 @@ class Admin extends Component {
                                         <Label text="Price" />
                                         <Input 
                                         type="text"
+                                        value={this.state.price}
                                         name="price"
                                         onChange={this.handleInputChange}
                                         className="form-control" id="price"
@@ -235,6 +254,7 @@ class Admin extends Component {
                                         <Label text="Quantity" />
                                         <Input 
                                         type="text"
+                                        value={this.state.quantity}
                                         name="quantity"
                                         onChange={this.handleInputChange}
                                         className="form-control" id="quantity"
@@ -244,8 +264,15 @@ class Admin extends Component {
                                 </Row>
                         </FormGroup>
 
+                        <FormGroup>
+                            <FormBtn
+                            text="Add"
+                            onClick={this.addProduct}
+                            classes="submitButton"
+                            />
+                        </FormGroup>
                         
-                        <button type="button" onClick={() => this.addProduct()}>Add Product</button>
+                        
                     </Col>
                 </Row>
                 </Tab>

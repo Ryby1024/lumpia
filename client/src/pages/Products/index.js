@@ -29,7 +29,7 @@ class Products extends Component {
     getAllProducts = () => {
         API.getProducts()
         .then(res => {
-            let myProducts = res.data.products;
+            let myProducts = res.data;
             this.setState({
                 products: myProducts
             })
