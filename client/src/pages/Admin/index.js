@@ -7,6 +7,7 @@ import {withRouter} from "react-router-dom";
 import { Tabs, Tab } from "react-bootstrap";
 import { FormGroup, Label, Input, Dropdown, Option, FormBtn } from "../../components/Form";
 import Table from 'react-bootstrap/Table'
+import ProductCard from "../../components/ProductCard";
 
 
 class Admin extends Component {
@@ -26,6 +27,7 @@ class Admin extends Component {
     }
     componentDidMount() {
         this.getAllUsers();
+        this.getAllProducts();
     }
 
     handleInputChange = event => {
@@ -40,7 +42,7 @@ class Admin extends Component {
     getAllProducts = () => {
         API.getProducts()
             .then(res => {
-                let myProducts = res.data.products;
+                let myProducts = res.data;
                 this.setState({
                     products: myProducts
                 })
@@ -275,6 +277,28 @@ class Admin extends Component {
                         
                     </Col>
                 </Row>
+                </Tab>
+
+                <Tab eventKey="edit=products" title="Edit/Delete Products">
+                    <h3 id="editProducts">Edit/Delete Products</h3>
+                    <Row className="products">
+                        <Col size="md-3">
+                    {this.state.products.map(product => (
+                        <AdminProductCard 
+                        key={product._id}
+                        _id={product._id}
+                        name={product.name}
+                        image={product.image}
+                        price={product.price}
+                        quantity={product.quantity}
+                        deleteProduct={this.deleteProduct}
+                        editProduct={this.editProduct}
+
+                        />
+                    ))}
+                    </Col>
+                  </Row>
+
                 </Tab>
 
                 </Tabs>               
