@@ -11,7 +11,7 @@ const AdminProductCard = (props) => {
                     <p className="lumpia-type">Type: Chicken, Pork, Vegetable</p>
                     <p className="price">Price: {props.price}</p>
                     <p className="quantity">Quantity: {props.quantity}</p>
-                    <button className="edit" onClick={() => props.editProduct(props._id)}>Edit</button>
+                    <button className="select" onClick={() => props.selectProduct(props._id)}>Edit</button>
                     <button className="delete" onClick={() => props.deleteProduct(props._id)}>Delete</button>
                 </span>
             </div>

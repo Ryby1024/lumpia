@@ -36,5 +36,13 @@ export default {
   },
   selectUser: function (id) {
     return axios.get("/api/admin/users/" + id);
+  },
+
+  editProduct: function (id, data) {
+    return axios.put("/api/admin/products/edit/" + id, data)
+  },
+
+  selectProduct: function (id) {
+    return axios.get("/api/admin/products/" + id)
   }
 };

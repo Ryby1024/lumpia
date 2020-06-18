@@ -118,6 +118,39 @@ router.get("/api/products", isAuthenticated, function(req, res) {
   });
 });
 
+router.get("/api/admin/products/:id", isAuthenticated, function(req, res) {
+  console.log(req.params.id)
+  db.Product.findOne({_id: req.params.id})
+  .then(selectedProduct => {
+    res.json(selectedProduct)
+    console.log("Got the product");
+    console.log(selectedProduct);
+  })
+  .catch(function(err){
+    res.json(err);
+  });
+});
+
+// Editing Products
+router.put("/api/admin/products/edit/:id", isAuthenticated, function (req, res) {
+  console.log(req.params.id)
+  db.Product.findByIdAndUpdate(req.params.id,
+    {
+      name: req.body.name,
+      image: req.body.image,
+      price: req.body.price,
+      quantity: req.body.quantity
+    },
+    )
+    .then(function(data) {
+      console.log(data);
+      res.json(data)
+    }).catch(function(err) {
+      res.json(err);
+    })
+    console.log("Product has been updated!")
+})
+
 
 // Editing a users info
 router.put("/api/admin/edit", isAuthenticated, function (req, res) {

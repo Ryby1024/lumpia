@@ -7,7 +7,7 @@ import {withRouter} from "react-router-dom";
 import { Tabs, Tab } from "react-bootstrap";
 import { FormGroup, Label, Input, Dropdown, Option, FormBtn } from "../../components/Form";
 import Table from 'react-bootstrap/Table'
-import ProductCard from "../../components/ProductCard";
+
 
 
 class Admin extends Component {
@@ -84,6 +84,22 @@ class Admin extends Component {
         })
         .catch(err => console.log(err));
     }
+
+    selectProduct = (id) => {
+        API.selectProduct(id)
+        .then(res => {
+            console.log(res.data)
+            this.setState({
+                name: res.data.name,
+                image: res.data.image,
+                price: res.data.price,
+                quantity: res.data.quantity
+            })
+        })
+        .catch(err => console.log(err));
+    }
+
+
     updateUser = (event) => {
         event.preventDefault();
         API.editUser({
@@ -211,7 +227,7 @@ class Admin extends Component {
                                         value={this.state.name}
                                         name="name"
                                         onChange={this.handleInputChange}
-                                        className="form-control" id="productName"
+                                        className="form-control" className="productName"
                                         placeholder="Type of Lumpia"
                                         />
                                     </Col>
@@ -226,7 +242,7 @@ class Admin extends Component {
                                         value={this.state.image}
                                         name="image"
                                         onChange={this.handleInputChange}
-                                        className="form-control" id="imageLink"
+                                        className="form-control" className="imageLink"
                                         placeholder="Link for Image"
                                         />
                                     </Col>
@@ -242,7 +258,7 @@ class Admin extends Component {
                                         value={this.state.price}
                                         name="price"
                                         onChange={this.handleInputChange}
-                                        className="form-control" id="price"
+                                        className="form-control" className="price"
                                         placeholder="Price"
                                         />
                                     </Col>
@@ -259,7 +275,7 @@ class Admin extends Component {
                                         value={this.state.quantity}
                                         name="quantity"
                                         onChange={this.handleInputChange}
-                                        className="form-control" id="quantity"
+                                        className="form-control" className="quantity"
                                         placeholder="Quantity"
                                         />
                                     </Col>
@@ -292,12 +308,90 @@ class Admin extends Component {
                         price={product.price}
                         quantity={product.quantity}
                         deleteProduct={this.deleteProduct}
-                        editProduct={this.editProduct}
+                        selectProduct={this.selectProduct}
 
                         />
                     ))}
                     </Col>
                   </Row>
+
+                  <Row className="add-product">
+                    <Col size="sm-6" className="align-self-center">
+                        <FormGroup>
+                                <Row>
+                                    <Col size="md-6">
+                                        <Label text="Name" />
+                                        <Input 
+                                        type="text"
+                                        defaultValue={this.state.name}
+                                        name="name"
+                                        onChange={this.handleInputChange}
+                                        className="form-control" className="productName"
+                                        placeholder={this.state.name}
+                                        />
+                                    </Col>
+                                </Row>
+                        </FormGroup>
+                        <FormGroup>
+                                <Row>
+                                    <Col size="md-6">
+                                        <Label text="Image" />
+                                        <Input 
+                                        type="text"
+                                        defaultValue={this.state.image}
+                                        name="image"
+                                        onChange={this.handleInputChange}
+                                        className="form-control" className="imageLink"
+                                        placeholder={this.state.image}
+                                        />
+                                    </Col>
+                                </Row>
+                        </FormGroup>
+
+                        <FormGroup>
+                                <Row>
+                                    <Col size="md-6">
+                                        <Label text="Price" />
+                                        <Input 
+                                        type="text"
+                                        defaultValue={this.state.price}
+                                        name="price"
+                                        onChange={this.handleInputChange}
+                                        className="form-control" className="price"
+                                        placeholder={this.state.price}
+                                        />
+                                    </Col>
+                                </Row>
+                        </FormGroup>
+
+
+                        <FormGroup>
+                                <Row>
+                                    <Col size="md-6">
+                                        <Label text="Quantity" />
+                                        <Input 
+                                        type="text"
+                                        defaultValue={this.state.quantity}
+                                        name="quantity"
+                                        onChange={this.handleInputChange}
+                                        className="form-control" className="quantity"
+                                        placeholder={this.state.quantity}
+                                        />
+                                    </Col>
+                                </Row>
+                        </FormGroup>
+
+                        <FormGroup>
+                            <FormBtn
+                            text="Add"
+                            onClick={this.editProduct}
+                            classes="submitButton"
+                            />
+                        </FormGroup>
+                        
+                        
+                    </Col>
+                </Row>
 
                 </Tab>
 
